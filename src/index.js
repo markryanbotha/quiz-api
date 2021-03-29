@@ -21,7 +21,11 @@ app.post('/quiz', async (req, res) => {
     res.status(200).json({ id });
 });
 
-// Get quiz (to review or edit it)
+// SSL
+app.get('/.well-known/pki-validation/72619CE7F4A5AF0E4F6EB843952E063A.txt', async (req, res) => {
+    res.status(200).sendFile(__dirname + "pki-validation/72619CE7F4A5AF0E4F6EB843952E063A.txt")
+});
+
 app.get('/quiz/:id', async (req, res) => {
     const id = req.params.id;
     const quizData = await quiz.getQuizAsync(id);
